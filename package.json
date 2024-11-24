@@ -1,0 +1,17 @@
+{
+  "name": "mintme",
+  "module": "index.ts",
+  "type": "module",
+  "workspaces": [
+    "agents",
+    "apps",
+    "contract",
+    "packages"
+  ],
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
