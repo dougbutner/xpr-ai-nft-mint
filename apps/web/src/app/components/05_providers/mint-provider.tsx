@@ -280,13 +280,14 @@ const Modal: FunctionComponent<ModalProps> = ({isOpen, onClose, children}) => {
   if (!isOpen) return null;
   return (
     <div
-      className="modal-overlay fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-80"
+      className="modal-overlay fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-80 p-4 z-10"
       onClick={onClose}
     >
       <div
-        className="modal-content absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-4 w-[480px]"
+        className="modal-content absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 w-[480px] max-w-[100vw]"
         onClick={e => e.stopPropagation()}
       >
+        <div className="bg-white p-4">
         <button className="modal-close" onClick={onClose}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -303,7 +304,8 @@ const Modal: FunctionComponent<ModalProps> = ({isOpen, onClose, children}) => {
             <path d="m9 9 6 6" />
           </svg>
         </button>
-        <div>{children}</div>
+          <div>{children}</div>
+        </div>
       </div>
     </div>
   );

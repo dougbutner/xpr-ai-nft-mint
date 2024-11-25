@@ -6,7 +6,7 @@ export const AppHeader: React.FunctionComponent<AppHeaderProps> = ({ className})
 const rootClasses = classNames({
   [`${className}`]: className,
   'grid grid-cols-[1fr,max-content] p-2 item-center': true,
-  'sticky top-0 bg-white z-10':true,
+  'sticky top-0 bg-white z-1':true,
 });
   return <div className={`${rootClasses}`}>
     <div className='flex items-center'>
