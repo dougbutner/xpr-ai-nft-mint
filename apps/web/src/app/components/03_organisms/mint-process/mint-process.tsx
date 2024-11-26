@@ -8,6 +8,15 @@ import { useCallback } from "react";
 
 type MintProcessProps = React.HTMLAttributes<HTMLDivElement>;
 
+/**
+ * MintProcess is a component that handles the multi-step minting process.
+ * It manages the flow between escrow, generation, and completion steps.
+ * 
+ * @component
+ * @param {MintProcessProps} props - Component props
+ * @param {string} [props.className] - Optional CSS class name for styling
+ * @returns {JSX.Element} A container div with the current step component based on mintStep state
+ */
 export const MintProcess: React.FunctionComponent<MintProcessProps> = ({
   className,
 }) => {

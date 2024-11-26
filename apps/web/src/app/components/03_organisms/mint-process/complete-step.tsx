@@ -1,8 +1,21 @@
 "use client";
+
+/**
+ * Props for the CompleteStep component
+ */
 type CompleteStepProps = React.HTMLAttributes<HTMLDivElement> & {
   onStepComplete: () => void;
 };
 
+/**
+ * CompleteStep component displays a success message after an NFT has been minted
+ * and transferred to the user's wallet.
+ * 
+ * @component
+ * @param {CompleteStepProps} props - The component props
+ * @param {() => void} props.onStepComplete - Callback function triggered when the user clicks the close button
+ * @returns {React.ReactElement} A component showing a success message and close button
+ */
 export const CompleteStep: React.FunctionComponent<CompleteStepProps> = ({
   onStepComplete,
 }) => {

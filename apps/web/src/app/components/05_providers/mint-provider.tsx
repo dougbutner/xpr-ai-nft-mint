@@ -19,34 +19,41 @@ import {getTicket} from "@/services/get-ticket";
 import {IAsset} from "atomicassets/build/API/Explorer/Objects";
 import {fetchAssets} from "@/services/atomicassets";
 
+/**
+ * Enum representing the different steps in the minting process
+ */
+export enum MintStep {
+  CONNECT,  // Initial connection step
+  ESCROW,   // Escrow payment step
+  GENERATE, // Image generation step
+  MINT,     // NFT minting step
+  DONE      // Process completion
+}
+
+/**
+ * Props for the MintProvider component
+ * @interface MintProviderProps
+ */
 type MintProviderProps = {
   children: React.ReactNode | React.ReactNode[];
   config: Tables<"ConfigTable">;
 };
 
-export enum MintStep {
-  CONNECT,
-  ESCROW,
-  GENERATE,
-  MINT,
-  DONE,
-}
-
 type MintProviderContextType = {
-  activeTicket?: Tables<"TicketTable">;
-  mintStep?: MintStep;
-  isVerifyingTicket?: boolean;
-  generationProcess: GenerationProcessStep;
-  minted?: IAsset[];
-  mintConfig: Tables<"ConfigTable">;
-  refreshMinted: () => void;
-  setMinted: (minted: IAsset[]) => void;
-  setMintStep: (step: MintStep) => void;
-  setActiveTicket: (activeTicket: Tables<"TicketTable">) => void;
-  verifyTicket: () => Promise<Tables<"TicketTable">[]>;
-  generateImage: () => Promise<TransactResult | null>;
-  mintSelected: (selectedHashIndex: number) => Promise<TransactResult | null>;
-  openMintDialog: () => void;
+  activeTicket?: Tables<"TicketTable">;    // Currently active minting ticket
+  mintStep?: MintStep;                     // Current step in the minting process
+  isVerifyingTicket?: boolean;             // Whether ticket verification is in progress
+  generationProcess: GenerationProcessStep; // Current generation process state
+  minted?: IAsset[];                       // Array of minted assets
+  mintConfig: Tables<"ConfigTable">;        // Minting configuration
+  refreshMinted: () => void;               // Function to refresh minted assets
+  setMinted: (minted: IAsset[]) => void;   // Function to update minted assets
+  setMintStep: (step: MintStep) => void;   // Function to update current mint step
+  setActiveTicket: (activeTicket: Tables<"TicketTable">) => void; // Function to update active ticket
+  verifyTicket: () => Promise<Tables<"TicketTable">[]>;           // Function to verify ticket
+  generateImage: () => Promise<TransactResult | null>;            // Function to generate image
+  mintSelected: (selectedHashIndex: number) => Promise<TransactResult | null>; // Function to mint selected asset
+  openMintDialog: () => void;              // Function to open minting dialog
 };
 
 const MintProviderContext = createContext<MintProviderContextType>({
@@ -84,11 +91,14 @@ const MintProviderContext = createContext<MintProviderContextType>({
   openMintDialog: () => {},
 });
 
+/**
+ * Type representing the different states of the generation process
+ */
 export type GenerationProcessStep =
-  | "idle"
-  | "generating"
-  | "block"
-  | "refreshing";
+  | "idle"      // No generation in progress
+  | "generating" // Currently generating
+  | "block"      // Waiting for block confirmation
+  | "refreshing"; // Refreshing data
 
 export const MintProvider: React.FunctionComponent<MintProviderProps> = ({
   children,
@@ -261,6 +271,11 @@ export const MintProvider: React.FunctionComponent<MintProviderProps> = ({
   );
 };
 
+/**
+ * Hook to access the minting context
+ * @returns {MintProviderContextType} The minting context
+ * @throws {Error} If used outside of MintProvider
+ */
 export function useMint(): MintProviderContextType {
   const context = useContext(MintProviderContext);
   if (!context) {
@@ -269,13 +284,22 @@ export function useMint(): MintProviderContextType {
   return context;
 }
 
+/**
+ * Props for the Modal component
+ * @interface ModalProps
+ */
 interface ModalProps {
-  isOpen: boolean;
-  onClose?: () => void;
-  onOpenChange?: () => void;
-  children: ReactNode;
+  isOpen: boolean;         // Whether the modal is currently open
+  onClose?: () => void;    // Function to call when modal is closed
+  onOpenChange?: () => void; // Function to call when modal open state changes
+  children: ReactNode;     // Modal content
 }
 
+/**
+ * Modal component for displaying content in an overlay
+ * @component
+ * @param {ModalProps} props - The component props
+ */
 const Modal: FunctionComponent<ModalProps> = ({isOpen, onClose, children}) => {
   if (!isOpen) return null;
   return (

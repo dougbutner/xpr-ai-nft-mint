@@ -10,6 +10,27 @@ import { GenerationLoader } from '../../02_molecules/generation-loader/generatio
 type GenerateStepProps = React.HTMLAttributes<HTMLDivElement> & React.HTMLAttributes<HTMLDivElement> & {
   onStepComplete: () => void;
 };
+
+/**
+ * GenerateStep is a component that handles the image generation and selection process during minting.
+ * It allows users to generate new images up to a configured limit and select one for minting.
+ * 
+ * @component
+ * @param {Object} props - Component props
+ * @param {Function} props.onStepComplete - Callback function triggered when the minting process is complete
+ * 
+ * Features:
+ * - Automatic first image generation
+ * - Manual generation of additional images up to a configured limit
+ * - Image carousel for viewing and selecting generated images
+ * - Generation status indicators
+ * - Minting functionality for selected images
+ * 
+ * @example
+ * ```tsx
+ * <GenerateStep onStepComplete={() => console.log('Minting complete')} />
+ * ```
+ */
 export const GenerateStep: React.FunctionComponent<GenerateStepProps> = ({
   onStepComplete,
 }) => { 

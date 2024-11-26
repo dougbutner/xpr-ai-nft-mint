@@ -11,6 +11,21 @@ type MintedListProps = React.HTMLAttributes<HTMLDivElement> & {
   assets: IAsset[];
 };
 
+/**
+ * MintedList component displays a grid of minted assets with infinite scroll functionality.
+ * 
+ * @component
+ * @param {MintedListProps} props - Component props
+ * @param {IAsset[]} props.assets - Initial array of atomic assets to display
+ * @param {string} [props.className] - Optional CSS class names to apply to the root element
+ * 
+ * @returns A scrollable list of MintedCard components with infinite loading capability
+ * 
+ * @example
+ * ```tsx
+ * <MintedList assets={initialAssets} className="custom-class" />
+ * ```
+ */
 export const MintedList: React.FunctionComponent<MintedListProps> = ({
   assets,
   className,

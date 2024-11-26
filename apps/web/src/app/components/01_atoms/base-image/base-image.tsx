@@ -11,6 +11,24 @@ type BaseImageProps = React.HTMLAttributes<HTMLDivElement> & {
 
 type ImageLoadStatus = "idle" | "loading" | "loaded" | "error" | "empty";
 
+/**
+ * A base image component that handles different loading states and displays appropriate UI feedback.
+ * 
+ * @component
+ * @param {object} props - Component props
+ * @param {string} [props.className] - Additional CSS classes to apply to the container
+ * @param {string} [props.src] - Source URL of the image
+ * @param {string} [props.alt] - Alternative text for the image
+ * 
+ * @returns {React.ReactElement} A div containing the image with loading states
+ * 
+ * @example
+ * <BaseImage
+ *   src="https://example.com/image.jpg"
+ *   alt="Example image"
+ *   className="my-custom-class"
+ * />
+ */
 export const BaseImage: React.FunctionComponent<BaseImageProps> = ({
   className,
   src,

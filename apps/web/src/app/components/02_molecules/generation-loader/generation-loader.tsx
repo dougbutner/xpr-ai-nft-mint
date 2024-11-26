@@ -1,6 +1,16 @@
 "use client";
 import classNames from "classnames";
 type GenerationLoaderProps = React.HTMLAttributes<HTMLDivElement> & {};
+
+/**
+ * A loading animation component that displays a moving rectangle within an SVG container.
+ * The loader uses an animated black rectangle that moves horizontally across a white background.
+ * 
+ * @component
+ * @param {object} props - Component props
+ * @param {string} [props.className] - Optional CSS class name to apply additional styles
+ * @returns {JSX.Element} A styled SVG loading animation
+ */
 export const GenerationLoader: React.FunctionComponent<
   GenerationLoaderProps
 > = ({ className }) => {

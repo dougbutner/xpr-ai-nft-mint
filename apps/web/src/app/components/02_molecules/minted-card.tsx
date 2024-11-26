@@ -7,6 +7,15 @@ import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import {BaseImage} from "../01_atoms/base-image/base-image";
 
 type MintedCardProps = React.HTMLAttributes<HTMLDivElement> & {asset: IAsset};
+
+/**
+ * MintedCard component displays an NFT asset with its owner information
+ * @component
+ * @param {MintedCardProps} props - Component props
+ * @param {string} [props.className] - Optional CSS class names to apply to the component
+ * @param {IAsset} props.asset - The NFT asset data to display
+ * @returns {JSX.Element} A card displaying the NFT image and owner information
+ */
 export const MintedCard: React.FunctionComponent<MintedCardProps> = ({
   className,
   asset,

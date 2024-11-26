@@ -12,7 +12,10 @@ export const metadata: Metadata = {
 };
 const rpc = new JsonRpc(process.env.NEXT_PUBLIC_XPR_ENDPOINT!.split(','));
 
-
+/**
+ * Fetches the configuration from the blockchain's ConfigTable
+ * @returns Promise<Tables<'ConfigTable'> | null> Configuration object or null if not found
+ */
 async function getConfig():Promise<Tables<'ConfigTable'> | null> {
 
   const table = await rpc.get_table_rows({
@@ -32,7 +35,12 @@ async function getConfig():Promise<Tables<'ConfigTable'> | null> {
   
 }
 
-
+/**
+ * Root layout component for the Next.js application
+ * @param {Object} props - Component props
+ * @param {React.ReactNode} props.children - Child components to render within the layout
+ * @returns {Promise<JSX.Element>} The root layout structure
+ */
 export default async function RootLayout({
   children,
 }: Readonly<{

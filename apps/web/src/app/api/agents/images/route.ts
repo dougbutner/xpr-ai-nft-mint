@@ -6,6 +6,9 @@ import { Tables, xprpals } from "@/interfaces/xprpals";
 import { TransactResult } from "@/interfaces/xprnetwork";
 export const maxDuration = 60;
 
+/**
+ * Request body interface for the POST endpoint
+ */
 type RequestBody = {
   actor: string,
   token: string,
@@ -16,6 +19,11 @@ const rpc = new JsonRpc(process.env.XPR_ENDPOINT!.split(','));
 const signatureProvider = new JsSignatureProvider([process.env.AI_AGENT_SECRET!])
 const api = new Api({ rpc, signatureProvider });
 
+/**
+ * Handles POST requests for generating and storing AI-generated images
+ * @param request - The incoming HTTP request
+ * @returns NextResponse with transaction result or error message
+ */
 export async function POST(request:Request) {
   
   if (!request) {
@@ -73,6 +81,11 @@ export async function POST(request:Request) {
   
 }
 
+/**
+ * Uploads an image to Pinata IPFS from a given URL
+ * @param url - URL of the image to pin
+ * @returns Promise containing the Pinata pin response
+ */
 async function pinImage(url:URL):Promise<PinResponse> {
   
     const imageResponse = await fetch(url);
@@ -91,6 +104,11 @@ async function pinImage(url:URL):Promise<PinResponse> {
 
 }
 
+/**
+ * Retrieves a ticket from the blockchain by its key
+ * @param ticketKey - Unique identifier for the ticket
+ * @returns Promise containing the ticket data or undefined
+ */
 async function getTicket(ticketKey: number) {
   
   const table:{rows:Tables<'TicketTable'>[]} = await rpc.get_table_rows({
@@ -107,11 +125,21 @@ async function getTicket(ticketKey: number) {
 
 }
 
+/**
+ * Verifies if a ticket belongs to the given actor
+ * @param ticket - The ticket to verify
+ * @param actor - The actor to check against
+ * @returns boolean indicating if the ticket is valid for the actor
+ */
 function verifyTicket(ticket:Tables<'TicketTable'>,actor:string) {
 
   return ticket.account === actor
 }
 
+/**
+ * Retrieves the most recent configuration from the blockchain
+ * @returns Promise containing the latest config or undefined
+ */
 async function getLastConfig() {
   
   const table:{rows:Tables<'ConfigTable'>[]} = await rpc.get_table_rows({
@@ -127,6 +155,13 @@ async function getLastConfig() {
 
 }
 
+/**
+ * Pushes a generated image hash to the blockchain
+ * @param ticketKey - The ticket key associated with the generation
+ * @param hash - IPFS hash of the generated image
+ * @param actor - Account performing the action
+ * @returns Promise containing the transaction result
+ */
 async function pushHashToChain(ticketKey: number, hash: string,actor:string):Promise<TransactResult> {
   
   console.log(process.env.AI_AGENT_ACTOR)
@@ -142,6 +177,10 @@ async function pushHashToChain(ticketKey: number, hash: string,actor:string):Pro
 
 }
 
+/**
+ * Generates a random head shape description for the AI prompt
+ * @returns String describing the robot head shape
+ */
 function getHeadShapeHint(): string{
   const index = getRandomHintIndex()
   switch (index) {
@@ -161,6 +200,10 @@ function getHeadShapeHint(): string{
 
 }
 
+/**
+ * Selects a random color based on predefined weights
+ * @returns String containing the selected color
+ */
 function getColor(): string{
   const index = getRandomHintIndex()
   switch (index) {
@@ -322,6 +365,10 @@ function getGender(): string {
 
 }
 
+/**
+ * Generates a random number between 0 and 8 for randomizing prompt elements
+ * @returns Random integer between 0 and 8
+ */
 function getRandomHintIndex(): number {
   
   return Math.floor(Math.random() * 9);

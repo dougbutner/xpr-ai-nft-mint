@@ -9,15 +9,25 @@ import { ArrowLeft, ArrowRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
+/** 
+ * Type definitions for Carousel API and options
+ */
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
 type CarouselOptions = UseCarouselParameters[0]
 type CarouselPlugin = UseCarouselParameters[1]
 
+/**
+ * Props for the Carousel component
+ */
 type CarouselProps = {
+  /** Optional carousel configuration options */
   opts?: CarouselOptions
+  /** Optional carousel plugins */
   plugins?: CarouselPlugin
+  /** Carousel orientation - either "horizontal" or "vertical" */
   orientation?: "horizontal" | "vertical"
+  /** Optional callback to access the carousel API */
   setApi?: (api: CarouselApi) => void
 }
 
@@ -42,6 +52,10 @@ function useCarousel() {
   return context
 }
 
+/**
+ * A carousel component that supports both horizontal and vertical orientations
+ * Built on top of Embla Carousel with keyboard navigation support
+ */
 const Carousel = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & CarouselProps
@@ -150,6 +164,10 @@ const Carousel = React.forwardRef<
 )
 Carousel.displayName = "Carousel"
 
+/**
+ * Container component for carousel items
+ * Must be used within a Carousel component
+ */
 const CarouselContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
@@ -172,6 +190,10 @@ const CarouselContent = React.forwardRef<
 })
 CarouselContent.displayName = "CarouselContent"
 
+/**
+ * Individual slide component for the carousel
+ * Must be used within CarouselContent
+ */
 const CarouselItem = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
@@ -194,6 +216,10 @@ const CarouselItem = React.forwardRef<
 })
 CarouselItem.displayName = "CarouselItem"
 
+/**
+ * Previous slide button component
+ * Automatically handles disabled state and orientation
+ */
 const CarouselPrevious = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<typeof Button>
@@ -223,6 +249,10 @@ const CarouselPrevious = React.forwardRef<
 })
 CarouselPrevious.displayName = "CarouselPrevious"
 
+/**
+ * Next slide button component
+ * Automatically handles disabled state and orientation
+ */
 const CarouselNext = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<typeof Button>

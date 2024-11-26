@@ -2,6 +2,16 @@
 import classNames from 'classnames';
 import { XPRNAvatar, XPRNConnectButton, XRPNContainer } from 'xprnkit';
 type AppHeaderProps = React.HTMLAttributes<HTMLDivElement> & {}
+
+/**
+ * AppHeader component that displays the main navigation header of the application.
+ * Contains the MintMe logo, title, and user authentication controls.
+ * 
+ * @component
+ * @param {AppHeaderProps} props - Component props
+ * @param {string} [props.className] - Optional CSS class names to apply to the root element
+ * @returns {React.ReactElement} A header component with logo, title and authentication controls
+ */
 export const AppHeader: React.FunctionComponent<AppHeaderProps> = ({ className}) => { 
 const rootClasses = classNames({
   [`${className}`]: className,

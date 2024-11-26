@@ -1,6 +1,12 @@
 import {Tables} from "@/interfaces/xprpals";
 import {JsonRpc} from "@proton/js";
 
+/**
+ * Retrieves a specific ticket from the blockchain using its ticket key
+ * @param {number} ticketKey - The unique identifier of the ticket to retrieve
+ * @returns {Promise<Tables<'TicketTable'> | null>} The ticket data if found, null otherwise
+ * @throws {Error} If the RPC connection fails
+ */
 export async function getTicket(ticketKey: number): Promise<Tables<'TicketTable'> | null> {
   const rpc = new JsonRpc(process.env.NEXT_PUBLIC_XPR_ENDPOINT!.split(","));
   return await rpc

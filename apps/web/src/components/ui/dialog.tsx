@@ -6,14 +6,23 @@ import { X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
+/** Root dialog component that manages the dialog state */
 const Dialog = DialogPrimitive.Root
 
+/** Button that triggers the dialog to open */
 const DialogTrigger = DialogPrimitive.Trigger
 
+/** Portal component that renders dialog content in a separate DOM tree */
 const DialogPortal = DialogPrimitive.Portal
 
+/** Button component for closing the dialog */
 const DialogClose = DialogPrimitive.Close
 
+/** 
+ * Overlay component that covers the viewport when dialog is open
+ * @param className - Additional CSS classes to apply
+ * @param props - Additional props to pass to the overlay element
+ */
 const DialogOverlay = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Overlay>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>
@@ -29,6 +38,12 @@ const DialogOverlay = React.forwardRef<
 ))
 DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
 
+/**
+ * Main content container for the dialog
+ * @param className - Additional CSS classes to apply
+ * @param children - Child elements to render inside the dialog
+ * @param props - Additional props to pass to the content element
+ */
 const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
@@ -53,6 +68,11 @@ const DialogContent = React.forwardRef<
 ))
 DialogContent.displayName = DialogPrimitive.Content.displayName
 
+/**
+ * Header section of the dialog
+ * @param className - Additional CSS classes to apply
+ * @param props - Additional props to pass to the header element
+ */
 const DialogHeader = ({
   className,
   ...props
@@ -67,6 +87,11 @@ const DialogHeader = ({
 )
 DialogHeader.displayName = "DialogHeader"
 
+/**
+ * Footer section of the dialog
+ * @param className - Additional CSS classes to apply
+ * @param props - Additional props to pass to the footer element
+ */
 const DialogFooter = ({
   className,
   ...props
@@ -81,6 +106,11 @@ const DialogFooter = ({
 )
 DialogFooter.displayName = "DialogFooter"
 
+/**
+ * Title component for the dialog
+ * @param className - Additional CSS classes to apply
+ * @param props - Additional props to pass to the title element
+ */
 const DialogTitle = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Title>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
@@ -96,6 +126,11 @@ const DialogTitle = React.forwardRef<
 ))
 DialogTitle.displayName = DialogPrimitive.Title.displayName
 
+/**
+ * Description text component for the dialog
+ * @param className - Additional CSS classes to apply
+ * @param props - Additional props to pass to the description element
+ */
 const DialogDescription = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Description>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>

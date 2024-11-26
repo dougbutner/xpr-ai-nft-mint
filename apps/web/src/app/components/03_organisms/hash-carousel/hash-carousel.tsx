@@ -7,11 +7,36 @@ import { Carousel, CarouselApi, CarouselContent, CarouselItem, CarouselNext, Car
 
 type HashCarouselProps = React.HTMLAttributes<HTMLDivElement> & { hashes?: (string | undefined)[],onSelectedHashChange:(index:number)=>void };
 
-// Imperative handler type for the parent to control the carousel
+/**
+ * Interface for controlling the HashCarousel component imperatively
+ * @interface
+ * @property {() => void} goToEnd - Scrolls the carousel to the last item
+ */
 export type HashCarouselHandle = {
   goToEnd: () => void;
 };
 
+/**
+ * A carousel component that displays images from IPFS hashes.
+ * 
+ * @component
+ * @param {Object} props - Component props
+ * @param {string} [props.className] - Additional CSS classes to apply to the carousel
+ * @param {(string | undefined)[]} [props.hashes] - Array of IPFS hashes for the images to display
+ * @param {(index: number) => void} props.onSelectedHashChange - Callback function triggered when selected image changes
+ * 
+ * @example
+ * ```tsx
+ * const [selectedIndex, setSelectedIndex] = useState(0);
+ * const carouselRef = useRef<HashCarouselHandle>(null);
+ * 
+ * <HashCarousel 
+ *   ref={carouselRef}
+ *   hashes={['hash1', 'hash2']}
+ *   onSelectedHashChange={setSelectedIndex}
+ * />
+ * ```
+ */
 export const HashCarousel = forwardRef<HashCarouselHandle, HashCarouselProps>(
   ({ className, hashes,onSelectedHashChange }, ref) => {
     const rootClasses = classNames({

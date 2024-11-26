@@ -7,10 +7,29 @@ import {eosio_token} from "@/interfaces/eosio.token";
 import {wait} from "@/utils/wait";
 import {getActiveTickets} from "@/services/get-active-tickets";
 
+/**
+ * Props for the EscrowStep component
+ * @interface EscrowStepProps
+ * @extends {React.HTMLAttributes<HTMLDivElement>}
+ */
 type EscrowStepProps = React.HTMLAttributes<HTMLDivElement> & {
+  /** Callback function to be called when the escrow step is completed */
   onStepComplete: () => void;
 };
 
+/**
+ * EscrowStep component handles the token escrow process for minting
+ * 
+ * This component manages:
+ * - Token transfer to escrow account
+ * - Verification of existing tickets
+ * - UI for escrow payment process
+ * 
+ * @component
+ * @param {EscrowStepProps} props - Component props
+ * @param {() => void} props.onStepComplete - Callback triggered when escrow step is complete
+ * @returns {JSX.Element} Rendered component
+ */
 export const EscrowStep: React.FunctionComponent<EscrowStepProps> = ({
   onStepComplete,
 }) => {
