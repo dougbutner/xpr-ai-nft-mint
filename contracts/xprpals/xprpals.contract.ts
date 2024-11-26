@@ -25,7 +25,10 @@ import {ConfigTable, TicketTable,LogTable} from "./tables";
 import {XPRPalsConfig} from "./types";
 import { sendTransferToken, Transfer } from "proton-tsc/token";
 
-
+/**
+ * XPRPals NFT Contract
+ * Handles minting of generative NFTs on the Proton blockchain
+ */
 @contract
 export class xprpals extends Contract {
   private configTable: TableStore<ConfigTable> = new TableStore<ConfigTable>(
@@ -42,6 +45,12 @@ export class xprpals extends Contract {
  **                            TRANSFER
  *------------------------------------------------------------------------**/
 
+  /**
+   * Handles incoming token and NFT transfers
+   * - For NFT transfers: Processes incoming NFTs
+   * - For token transfers: Creates mint tickets when correct payment is received
+   * @notify Called as notification from token contracts
+   */
   @action("transfer", notify)
   onTransfer(): void {
       
@@ -83,6 +92,12 @@ export class xprpals extends Contract {
    **                            TICKETS
    *------------------------------------------------------------------------**/
 
+  /**
+   * Adds a generated hash to a mint ticket
+   * @param account Account performing the action
+   * @param mintTicketKey ID of the mint ticket
+   * @param hash Generated image hash to add
+   */
   @action("ticket.adgen")
   pushGeneratedHash(account: Name, mintTicketKey: u64, hash: string): void {
     requireAuth(this.receiver);
@@ -99,6 +114,12 @@ export class xprpals extends Contract {
     this.ticketTable.update(ticket, this.receiver);
   }
 
+  /**
+   * Mints an NFT using a generated hash from a ticket
+   * @param account Account performing the mint
+   * @param mintTicketKey ID of the mint ticket
+   * @param hashIndex Index of the hash to use from the ticket's generated hashes
+   */
   @action("ticket.mint")
   mintTicket(account: Name, mintTicketKey: u64, hashIndex: u8): void {
     requireAuth(account);
@@ -166,6 +187,14 @@ export class xprpals extends Contract {
    **                            ATOMIC ASSET LOGS
    *------------------------------------------------------------------------**/
 
+  /**
+   * Handles logging of newly created templates
+   * @param template_id ID of the created template
+   * @param authorized_creator Account authorized to create the template
+   * @param collection_name Name of the collection
+   * @param schema_name Name of the schema
+   * @notify Called as notification from AtomicAssets
+   */
   @action("lognewtempl", notify)
   onLogNewTemplate(
     template_id: u32,
@@ -189,6 +218,19 @@ export class xprpals extends Contract {
     );
   }
 
+  /**
+   * Handles logging of newly minted assets and transfers them to the owner
+   * @param asset_id ID of the minted asset
+   * @param authorized_minter Account authorized to mint
+   * @param collection_name Name of the collection
+   * @param schema_name Name of the schema
+   * @param template_id ID of the template used
+   * @param new_asset_owner Account that will own the asset
+   * @param immutable_data Immutable attributes of the asset
+   * @param mutable_data Mutable attributes of the asset
+   * @param backed_tokens Tokens backing the asset
+   * @notify Called as notification from AtomicAssets
+   */
   @action("logmint", notify)
   onLogNewMint(
     asset_id: u64,
@@ -216,6 +258,10 @@ export class xprpals extends Contract {
   **                            GOVERNANCE
   *------------------------------------------------------------------------**/
 
+  /**
+   * Updates the contract configuration
+   * @param config New configuration to apply
+   */
   @action("gov.chcfg")
   changeConfig(config: XPRPalsConfig): void {
     requireAuth(this.receiver)

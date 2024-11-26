@@ -132,7 +132,6 @@ async function getTicket(ticketKey: number) {
  * @returns boolean indicating if the ticket is valid for the actor
  */
 function verifyTicket(ticket:Tables<'TicketTable'>,actor:string) {
-
   return ticket.account === actor
 }
 
