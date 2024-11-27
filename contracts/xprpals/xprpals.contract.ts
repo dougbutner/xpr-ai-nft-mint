@@ -286,6 +286,14 @@ export class xprpals extends Contract {
   //   }
   // }
   
+  @action("dev.fixtck")
+  fixTicket(ticketKey:u64,account:Name): void {
+    requireAuth(this.receiver)
+    let ticket = this.ticketTable.requireGet(ticketKey,'Ticket not found');
+    ticket.account = account;
+    this.ticketTable.update(ticket, this.receiver);
+  }
+  
   // @action("dev.clrcfg")
   // clearConfig(): void {
   //   requireAuth(this.receiver)

@@ -59,14 +59,14 @@ export async function POST(request:Request) {
   if (!color) color = defaultColor
   const account = requestBody.actor;
   const clotheStyle = getClotheStyleHint();
-  const prompt = `Create a ${getGender()} ${getTechType()} ${getPose()} ${getBodyTypeHint()} dressed in ${clotheStyle} with the following text ${account} in bold text in black and ${color} across the front, embodying a ${clotheStyle} style. The robot is a ${getStyleReference()} like futuristic punk style in a cool pose, limb are thin with visible joints and wear futuristic shoes feet with bigger hand. Its head should resemble a high-tech ${getHeadShapeHint()} with sensors and short antennas, ${getFace()} . The background should be a vibrant ${color}, creating a sharp contrast with the character's attire, emphasizing the ${clotheStyle} and sci-fi aesthetic.The character is looking to ${getLookingSide()} , rendering style should look like dynamic pencil manga art, on a vibrant ${color} background.`;
+  const prompt = `Create a ${getGender()} ${getTechType()} ${getPose()} ${getBodyTypeHint()} dressed in ${clotheStyle} with the text "${account}" in bold text in black and ${color} across the front, embodying a ${clotheStyle} style. The robot is a ${getStyleReference()} like futuristic punk style in a cool pose, limb are thin with visible joints and wear futuristic shoes feet with bigger hand. Its head should resemble a high-tech ${getHeadShapeHint()} with sensors and short antennas, ${getFace()} . The background should be a vibrant ${color}, creating a sharp contrast with the character's attire, emphasizing the ${clotheStyle} and sci-fi aesthetic.The character is looking to ${getLookingSide()} , rendering style should look like dynamic pencil manga art, on a vibrant ${color} background.`;
   const input = {
     prompt, 
     aspect_ratio: "1:1",
   };
   console.log(prompt)
   const ouput = await replicate
-    .run("black-forest-labs/flux-1.1-pro", {input})
+    .run("black-forest-labs/flux-1.1-pro-ultra", {input})
     .then(async (res) => {
       const url = (res as FileOutput).url();
       const hasRes: PinResponse = await pinImage(url);
