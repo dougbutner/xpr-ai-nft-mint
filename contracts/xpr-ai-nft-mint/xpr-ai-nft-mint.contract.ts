@@ -22,7 +22,7 @@ import {
 } from "proton-tsc/atomicassets";
 import {Config} from "proton-tsc/atomicassets/atomicassets.tables";
 import {ConfigTable, TicketTable,LogTable} from "./tables";
-import {XPRPalsConfig} from "./types";
+import {GlobalConfig} from "./types";
 import { sendTransferToken, Transfer } from "proton-tsc/token";
 
 /**
@@ -30,7 +30,7 @@ import { sendTransferToken, Transfer } from "proton-tsc/token";
  * Handles minting of generative NFTs on the Proton blockchain
  */
 @contract
-export class xprpals extends Contract {
+export class XprAiNftMintContract extends Contract {
   private configTable: TableStore<ConfigTable> = new TableStore<ConfigTable>(
     this.receiver
   );
@@ -263,7 +263,7 @@ export class xprpals extends Contract {
    * @param config New configuration to apply
    */
   @action("gov.chcfg")
-  changeConfig(config: XPRPalsConfig): void {
+  changeConfig(config: GlobalConfig): void {
     requireAuth(this.receiver)
     const nextKey = this.configTable.availablePrimaryKey;
     const newConfig = new ConfigTable(nextKey, config);

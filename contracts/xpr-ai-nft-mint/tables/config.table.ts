@@ -1,5 +1,5 @@
 import { Asset, EMPTY_NAME, Symbol, Table } from "proton-tsc";
-import { XPRPalsConfig } from "../types";
+import { GlobalConfig } from "../types";
 
 /**
  * @table config
@@ -11,11 +11,11 @@ export class ConfigTable extends Table {
   /**
    * @constructor
    * @param {u64} key - Primary key for the config entry (defaults to 0)
-   * @param {XPRPalsConfig} config - Configuration settings containing admin and token info (defaults to empty config)
+   * @param {GlobalConfig} config - Configuration settings containing admin and token info (defaults to empty config)
    */
   constructor(
     public key: u64 = 0,
-    public config: XPRPalsConfig = new XPRPalsConfig(EMPTY_NAME,new Asset(0,new Symbol('XPR',4)))
+    public config: GlobalConfig = new GlobalConfig(EMPTY_NAME,new Asset(0,new Symbol('XPR',4)))
   ) {
     super()
   }

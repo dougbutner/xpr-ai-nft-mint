@@ -1,5 +1,5 @@
 import { Asset, EMPTY_NAME, Name, Symbol, Table } from "proton-tsc";
-import { XPRPalsConfig } from "../types";
+import { GlobalConfig } from "../types";
 
 /**
  * @table logs

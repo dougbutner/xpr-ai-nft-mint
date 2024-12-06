@@ -15,7 +15,7 @@ import {
  * @implements {Packer}
  */
 @packer
-export class XPRPalsConfig implements Packer {
+export class GlobalConfig implements Packer {
   /**
    * Creates an instance of XPRPalsConfig
    * @param {Name} collectionName - The name of the NFT collection

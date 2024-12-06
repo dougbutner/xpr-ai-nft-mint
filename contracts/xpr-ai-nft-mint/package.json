@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "npx proton-asc xprpals.contract.ts",
+    "build": "npx proton-asc xpr-ai-nft-mint.contract.ts",
     "playground": "npm run build && cross-env LOG_LEVEL=debug ts-node ./playground.ts"
   },
   "dependencies": {
