@@ -25,7 +25,8 @@ Your templates and asset need a collection on Atomic asset to be bound with.
 
 Navigate to [explorer mainnet](https://explorer.xprnetwork.org/account/atomicassets?loadContract=true&tab=Actions&account=atomicassets&scope=atomicassets&limit=100&action=createcol) or [explorer testnet](https://testnet.explorer.xprnetwork.org/account/atomicassets?loadContract=true&tab=Actions&account=atomicassets&scope=atomicassets&limit=100&action=createcol) and fill the following form.
 
---
+![explorer xprnetwork org_account_atomicassets_loadContract=true tab=Actions account=atomicassets scope=atomicassets limit=100 action=createcol (2)](https://github.com/user-attachments/assets/7b0a4db0-0c94-4ab7-941f-46f6c4c9f873)
+
 
 Make sure: 
 - You replace `yourcontract` by the name of the account where the contract is deployed.
@@ -35,6 +36,8 @@ Make sure:
 Next create the schema 
 
 Now navigate to [explorer mainnet](https://explorer.xprnetwork.org/account/atomicassets?loadContract=true&tab=Actions&account=atomicassets&scope=atomicassets&limit=100&action=createschema) or [explorer testnet](https://testnet.explorer.xprnetwork.org/account/atomicassets?loadContract=true&tab=Actions&account=atomicassets&scope=atomicassets&limit=100&action=createschema) and fill the following form.
+
+<img width="441" alt="Capture d’écran 2024-12-06 à 01 21 26" src="https://github.com/user-attachments/assets/893f9d2a-6728-4ae6-a61d-fdba267cfda1">
 
 Make sure: 
 - You replace `yourcontract` by the name of the account where the contract is deployed.
