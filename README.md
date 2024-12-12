@@ -1,7 +1,7 @@
 # MintMe Project
 
 ## Overview
-MintMe is a decentralized application built on XRP Network, consisting of smart contracts and a web interface.
+MintMe is a decentralized application built on XPR Network, consisting of smart contracts and a web interface.
 
 ## Project Structure
 - `/contract/xpr-ai-nft-mint` - Smart contract implementation
