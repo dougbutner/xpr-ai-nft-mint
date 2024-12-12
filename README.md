@@ -3,6 +3,8 @@
 ## Overview
 MintMe is a decentralized application built on XPR Network, consisting of smart contracts and a web interface.
 
+The user will connect their WebAuth.com wallet to the application front end, escrow some token for minting 'tickets' which the user can use to generate up to three images using txt2img api from Replicate with the current configuration, then the user can mint one of the images as an NFT to a pre-selected atomic assets collection on XPR Network.
+
 ## Project Structure
 - `/contract/xpr-ai-nft-mint` - Smart contract implementation
 - `/apps/web` - Web application frontend
