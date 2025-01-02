@@ -231,7 +231,7 @@ NEXT_PUBLIC_XPR_ENDPOINT=https://testnet.rockerone.io
 ````
 The XPRNetwork's endpoints
 ```
-NEXT_PUBLIC_XPR_AA_ENDPOINT=https://aa-xprnetwork-test.saltant.io/
+NEXT_PUBLIC_XPR_AA_ENDPOINT=https://aa-xprnetwork-test.saltant.io
 ````
 The atomic assets endpoint  
 ```
