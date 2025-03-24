@@ -3,10 +3,10 @@
   "module": "index.ts",
   "type": "module",
   "workspaces": [
-    "agents",
-    "apps",
-    "contract",
-    "packages"
+    "agents/*",
+    "apps/*",
+    "contract/*",
+    "packages/*"
   ],
   "devDependencies": {
     "@types/bun": "latest"
