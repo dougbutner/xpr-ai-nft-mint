@@ -1,5 +1,7 @@
-TESTNET_CONTRACT_NAME = xprpals
+TESTNET_CONTRACT_NAME = memeprinter
 MAINNET_CONTRACT_NAME = mintme
+
+CONTRACT_NAME = memeprinter
 
 prepare:
 	
